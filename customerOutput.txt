@@ -1,0 +1,8 @@
+Order Number: 10
+Delivery Method: Delivery
+The price for this meal is: $5.0, details are :
+1. chip x1 Total: $5.0
+Order Number: 10
+Delivery Method: Pickup
+The price for this meal is: $5.0, details are :
+1. chip x1 Total: $5.0

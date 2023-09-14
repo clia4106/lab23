@@ -1,0 +1,6 @@
+1,chip,Crispy fried potatoes,5.0
+2,pizza,Crisp golden crust covered with fresh ingredients,7.0
+3,Burger,Juicy beef patties and fresh vegetables sandwiched between the fluffy bread,10.0
+4,coke,A cold carbonated drink,3.0
+5,water,Clear pure water,1.5
+6,xbox one,gaming consoles,1000.0

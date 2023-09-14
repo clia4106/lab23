@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Lab23-Ankit-Group4-A1</a> &gt; <a href="index.source.html" class="el_package">Lab23.Ankit.Group4.A1</a> &gt; <span class="el_source">ProjectManager.java</span></div><h1>ProjectManager.java</h1><pre class="source lang-java linenums">package Lab23.Ankit.Group4.A1;
+
+import java.io.*;
+import java.util.*;
+
+<span class="nc" id="L6">public class ProjectManager {</span>
+    private static final String FILE_PATH = &quot;dishes.txt&quot;;
+    private static final String DELIMITER = &quot;,&quot;;
+
+    // Add a project
+    public static void addProject(Scanner scanner) {
+<span class="fc" id="L12">        System.out.print(&quot;Enter product ID: &quot;);</span>
+<span class="fc" id="L13">        String productId = scanner.nextLine();</span>
+<span class="fc" id="L14">        System.out.print(&quot;Enter product name: &quot;);</span>
+<span class="fc" id="L15">        String projectName = scanner.nextLine();</span>
+<span class="fc" id="L16">        System.out.print(&quot;Enter product description: &quot;);</span>
+<span class="fc" id="L17">        String description = scanner.nextLine();</span>
+
+<span class="fc" id="L19">        double price = 0.0;</span>
+<span class="fc" id="L20">        boolean validPrice = false;</span>
+
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        while (!validPrice) {</span>
+<span class="fc" id="L23">            System.out.print(&quot;Enter product price: &quot;);</span>
+<span class="fc" id="L24">            String priceInput = scanner.nextLine();</span>
+
+            try {
+<span class="fc" id="L27">                price = Double.parseDouble(priceInput);</span>
+<span class="fc" id="L28">                validPrice = true;</span>
+<span class="nc" id="L29">            } catch (NumberFormatException e) {</span>
+<span class="nc" id="L30">                System.out.println(&quot;Please enter a valid number as the price.&quot;);</span>
+<span class="fc" id="L31">            }</span>
+<span class="fc" id="L32">        }</span>
+
+<span class="fc" id="L34">        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {</span>
+            String line;
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L37">                String[] parts = line.split(DELIMITER);</span>
+<span class="fc" id="L38">                String existingProductId = parts[0].trim();</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">                if (existingProductId.equalsIgnoreCase(productId)) {</span>
+<span class="nc" id="L40">                    System.out.println(&quot;Product ID already exists. Please enter a new one.&quot;);</span>
+<span class="nc" id="L41">                    return;</span>
+                }
+<span class="fc" id="L43">            }</span>
+<span class="nc" id="L44">        } catch (IOException e) {</span>
+<span class="nc" id="L45">            System.err.println(&quot;Error reading file:&quot; + e.getMessage());</span>
+<span class="fc" id="L46">        }</span>
+
+<span class="fc" id="L48">        try (RandomAccessFile raf = new RandomAccessFile(FILE_PATH, &quot;rw&quot;)) {</span>
+<span class="fc" id="L49">            long fileLength = raf.length();</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if (fileLength &gt; 0) {</span>
+<span class="fc" id="L51">                raf.seek(fileLength - 1);</span>
+<span class="fc" id="L52">                int lastChar = raf.read();</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                if (lastChar != '\n') {</span>
+<span class="nc" id="L54">                    raf.writeBytes(System.lineSeparator());</span>
+                }
+            }
+<span class="fc" id="L57">            raf.writeBytes(productId + DELIMITER + projectName + DELIMITER + description + DELIMITER + price);</span>
+<span class="fc" id="L58">            System.out.println(&quot;The project has been added.&quot;);</span>
+<span class="nc" id="L59">        } catch (IOException e) {</span>
+<span class="nc" id="L60">            System.err.println(&quot;Error occurred while adding the project: &quot; + e.getMessage());</span>
+<span class="fc" id="L61">        }</span>
+<span class="fc" id="L62">    }</span>
+
+    // Delete a project
+    public static void deleteProject(Scanner scanner) {
+<span class="fc" id="L66">        System.out.print(&quot;Enter the product ID to delete: &quot;);</span>
+<span class="fc" id="L67">        String productIdToDelete = scanner.nextLine();</span>
+
+<span class="fc" id="L69">        boolean projectFound = false;</span>
+
+        try {
+<span class="fc" id="L72">            List&lt;String&gt; lines = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L73">            BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));</span>
+
+            String line;
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L77">                String[] parts = line.split(DELIMITER);</span>
+<span class="fc" id="L78">                String productId = parts[0].trim();</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">                if (!productId.equalsIgnoreCase(productIdToDelete)) {</span>
+<span class="fc" id="L80">                    lines.add(line);</span>
+                } else {
+<span class="fc" id="L82">                    projectFound = true;</span>
+                }
+<span class="fc" id="L84">            }</span>
+
+<span class="fc" id="L86">            reader.close();</span>
+
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">            if (projectFound) {</span>
+<span class="fc" id="L89">                BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH));</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">                for (String updatedLine : lines) {</span>
+<span class="fc" id="L91">                    writer.write(updatedLine);</span>
+<span class="fc" id="L92">                    writer.newLine();</span>
+<span class="fc" id="L93">                }</span>
+
+<span class="fc" id="L95">                writer.close();</span>
+<span class="fc" id="L96">                System.out.println(&quot;The project has been deleted.&quot;);</span>
+<span class="fc" id="L97">            } else {</span>
+<span class="nc" id="L98">                System.out.println(&quot;Product ID does not exist, cannot delete.&quot;);</span>
+            }
+<span class="nc" id="L100">        } catch (IOException e) {</span>
+<span class="nc" id="L101">            System.err.println(&quot;Error occurred while deleting the project: &quot; + e.getMessage());</span>
+<span class="fc" id="L102">        }</span>
+<span class="fc" id="L103">    }</span>
+
+    // Modify an existing project
+    public static void modifyProject(Scanner scanner) {
+<span class="fc" id="L107">        System.out.print(&quot;Enter the product ID to modify: &quot;);</span>
+<span class="fc" id="L108">        String productIdToModify = scanner.nextLine();</span>
+
+<span class="fc" id="L110">        boolean projectFound = false;</span>
+
+        try {
+<span class="fc" id="L113">            List&lt;String&gt; lines = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L114">            BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));</span>
+
+            String line;
+<span class="fc bfc" id="L117" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L118">                String[] parts = line.split(DELIMITER);</span>
+<span class="fc" id="L119">                String productId = parts[0].trim();</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">                if (productId.equalsIgnoreCase(productIdToModify)) {</span>
+<span class="fc" id="L121">                    String currentProjectName = parts[1].trim();</span>
+<span class="fc" id="L122">                    String currentDescription = parts[2].trim();</span>
+<span class="fc" id="L123">                    double currentPrice = Double.parseDouble(parts[3].trim());</span>
+
+<span class="fc" id="L125">                    System.out.print(&quot;Enter the new project name (&quot; + currentProjectName + &quot;): &quot;);</span>
+<span class="fc" id="L126">                    String newProjectName = scanner.nextLine();</span>
+
+<span class="fc" id="L128">                    System.out.print(&quot;Enter the new project description (&quot; + currentDescription + &quot;): &quot;);</span>
+<span class="fc" id="L129">                    String newDescription = scanner.nextLine();</span>
+
+<span class="fc" id="L131">                    double newPrice = 0.0;</span>
+<span class="fc" id="L132">                    boolean validPrice = false;</span>
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                    while (!validPrice) {</span>
+<span class="fc" id="L135">                        System.out.print(&quot;Enter the new project price (&quot; + currentPrice + &quot;): &quot;);</span>
+<span class="fc" id="L136">                        String priceInput = scanner.nextLine();</span>
+
+                        try {
+<span class="fc" id="L139">                            newPrice = Double.parseDouble(priceInput);</span>
+<span class="fc" id="L140">                            validPrice = true;</span>
+<span class="nc" id="L141">                        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L142">                            System.out.println(&quot;Please enter a valid number as the price.&quot;);</span>
+<span class="fc" id="L143">                        }</span>
+<span class="fc" id="L144">                    }</span>
+
+<span class="fc" id="L146">                    String updatedLine = productId + DELIMITER + newProjectName + DELIMITER + newDescription + DELIMITER</span>
+                            + newPrice;
+<span class="fc" id="L148">                    lines.add(updatedLine);</span>
+<span class="fc" id="L149">                    System.out.println(&quot;The project has been modified.&quot;);</span>
+<span class="fc" id="L150">                    projectFound = true;</span>
+<span class="fc" id="L151">                } else {</span>
+<span class="fc" id="L152">                    lines.add(line);</span>
+                }
+<span class="fc" id="L154">            }</span>
+
+<span class="fc" id="L156">            reader.close();</span>
+
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">            if (!projectFound) {</span>
+<span class="nc" id="L159">                System.out.println(&quot;Product ID does not exist, cannot modify.&quot;);</span>
+<span class="nc" id="L160">                return;</span>
+            }
+
+<span class="fc" id="L163">            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH));</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">            for (String updatedLine : lines) {</span>
+<span class="fc" id="L165">                writer.write(updatedLine);</span>
+<span class="fc" id="L166">                writer.newLine();</span>
+<span class="fc" id="L167">            }</span>
+
+<span class="fc" id="L169">            writer.close();</span>
+<span class="nc" id="L170">        } catch (IOException e) {</span>
+<span class="nc" id="L171">            System.err.println(&quot;Error occurred while modifying the project: &quot; + e.getMessage());</span>
+<span class="fc" id="L172">        }</span>
+<span class="fc" id="L173">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

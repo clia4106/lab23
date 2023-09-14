@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Lab23-Ankit-Group4-A1</a> &gt; <a href="index.source.html" class="el_package">Lab23.Ankit.Group4.A1</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package Lab23.Ankit.Group4.A1;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+<span class="nc" id="L12">public class App {</span>
+<span class="fc" id="L13">    static Map&lt;Integer, dish&gt; dishesMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L14">    static List&lt;dish&gt; ShowOrdered = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L15">    static List&lt;Payment&gt; paymentList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L16">    static boolean isAdminLoggedIn = false;</span>
+<span class="fc" id="L17">    static Scanner scanner = new Scanner(System.in);</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L20">        start();        </span>
+<span class="nc" id="L21">    }</span>
+
+    public static void start(){
+<span class="fc" id="L24">        initDish();</span>
+        
+
+        while (true) {
+<span class="fc" id="L28">            displayMain();</span>
+
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            if (scanner.hasNextInt()) {</span>
+<span class="fc" id="L31">                int num = scanner.nextInt();</span>
+<span class="fc" id="L32">                scanner.nextLine(); // Consume newline</span>
+<span class="pc bpc" id="L33" title="5 of 8 branches missed.">                switch (num) {</span>
+                    case 1:
+<span class="nc" id="L35">                        MenuOperations.DisplayMenu(dishesMap, ShowOrdered);</span>
+<span class="nc" id="L36">                        break;</span>
+
+                    case 2:
+<span class="nc" id="L39">                        MenuOperations.ShowOrdered(dishesMap, ShowOrdered);</span>
+<span class="nc" id="L40">                        break;</span>
+
+                    case 3:
+<span class="nc" id="L43">                        MenuOperations.processPayment(ShowOrdered, paymentList);</span>
+<span class="nc" id="L44">                        break;</span>
+
+                    case 4:
+<span class="nc" id="L47">                        MenuOperations.historyOrder(paymentList);</span>
+<span class="nc" id="L48">                        break;</span>
+
+                    case 5:
+<span class="fc" id="L51">                        return;</span>
+
+                    case 6:
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                        if (!isAdminLoggedIn) {</span>
+<span class="nc" id="L55">                            adminLogin(scanner);</span>
+                        } else {
+<span class="nc" id="L57">                            isAdminLoggedIn = false; // Exit admin mode</span>
+<span class="nc" id="L58">                            System.out.println(&quot;Exited admin mode.&quot;);</span>
+                        }
+<span class="nc" id="L60">                        break;</span>
+
+                    case 7:
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">                        if (isAdminLoggedIn) {</span>
+<span class="nc" id="L64">                            adminPanel(scanner);</span>
+                        } else {
+<span class="fc" id="L66">                            System.out.println(&quot;Please log in as an administrator to access admin functions.&quot;);</span>
+                        }
+<span class="fc" id="L68">                        break;</span>
+
+                    default:
+<span class="fc" id="L71">                        System.out.println(&quot;Invalid choice. Please try again.&quot;);</span>
+                        break;
+                }
+<span class="fc" id="L74">            } else {</span>
+<span class="nc" id="L75">                System.out.println(&quot;Invalid input.&quot;);</span>
+<span class="nc" id="L76">                scanner.nextLine(); // Consume invalid input</span>
+            }
+        }
+    }
+
+    public static int countHistoricalOrders() {
+<span class="fc" id="L82">        int orderCount = 0;</span>
+<span class="fc" id="L83">        try (BufferedReader reader = new BufferedReader(new FileReader(&quot;adminOutput.txt&quot;))) {</span>
+            String line;
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                if (line.startsWith(&quot;Order Number:&quot;)) {</span>
+<span class="fc" id="L87">                    orderCount++;</span>
+                }
+            }
+<span class="nc" id="L90">        } catch (IOException e) {</span>
+<span class="nc" id="L91">            e.printStackTrace();</span>
+<span class="fc" id="L92">        }</span>
+<span class="fc" id="L93">        return orderCount;</span>
+    }
+
+    public static void reloadDishList() {
+<span class="fc" id="L97">        DishFileManager fileManager = new DishFileManager(&quot;dishes.txt&quot;);</span>
+<span class="fc" id="L98">        dishesMap = fileManager.loadDishesFromFile();</span>
+<span class="fc" id="L99">        System.out.println(&quot;Menu reloaded.&quot;);</span>
+<span class="fc" id="L100">    }</span>
+
+    public static void initDish() {
+<span class="fc" id="L103">        DishFileManager fileManager = new DishFileManager(&quot;dishes.txt&quot;);</span>
+<span class="fc" id="L104">        dishesMap = fileManager.loadDishesFromFile();</span>
+<span class="fc" id="L105">    }</span>
+
+    public static void displayMain() {
+<span class="fc" id="L108">        System.out.println(&quot;Main Menu:&quot;);</span>
+<span class="fc" id="L109">        System.out.println(&quot;1. Display Menu&quot;);</span>
+<span class="fc" id="L110">        System.out.println(&quot;2. View Orders&quot;);</span>
+<span class="fc" id="L111">        System.out.println(&quot;3. Process Payment&quot;);</span>
+<span class="fc" id="L112">        System.out.println(&quot;4. View Order History&quot;);</span>
+<span class="fc" id="L113">        System.out.println(&quot;5. Exit&quot;);</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        System.out.println(isAdminLoggedIn ? &quot;6. Exit Admin Mode&quot; : &quot;6. Admin Login&quot;);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        System.out.println(isAdminLoggedIn ? &quot;7. Admin Control Panel&quot; : &quot;&quot;);</span>
+<span class="fc" id="L116">        System.out.print(&quot;Select an operation: &quot;);</span>
+<span class="fc" id="L117">    }</span>
+
+    public static void adminLogin(Scanner scanner) {
+<span class="fc" id="L120">        System.out.print(&quot;Enter administrator username: &quot;);</span>
+<span class="fc" id="L121">        String adminUsername = scanner.nextLine();</span>
+<span class="fc" id="L122">        System.out.print(&quot;Enter administrator password: &quot;);</span>
+<span class="fc" id="L123">        String adminPassword = scanner.nextLine();</span>
+<span class="fc" id="L124">        isAdminLoggedIn = UserManager.login(adminUsername, adminPassword);</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        if (isAdminLoggedIn) {</span>
+<span class="fc" id="L126">            System.out.println(&quot;Administrator login successful!&quot;);</span>
+        } else {
+<span class="fc" id="L128">            System.out.println(&quot;Administrator login failed. Please try again.&quot;);</span>
+        }
+<span class="fc" id="L130">    }</span>
+
+    public static void adminPanel(Scanner scanner) {
+<span class="fc" id="L133">        System.out.println(&quot;Admin Control Panel:&quot;);</span>
+<span class="fc" id="L134">        System.out.println(&quot;1. Add Item&quot;);</span>
+<span class="fc" id="L135">        System.out.println(&quot;2. Delete Item&quot;);</span>
+<span class="fc" id="L136">        System.out.println(&quot;3. Modify Item&quot;);</span>
+<span class="fc" id="L137">        System.out.println(&quot;4. Register Administrator Account&quot;);</span>
+<span class="fc" id="L138">        System.out.println(&quot;5. Account the total number of order&quot;);</span>
+<span class="fc" id="L139">        System.out.println(&quot;6. Return to Main Menu&quot;);</span>
+<span class="fc" id="L140">        System.out.print(&quot;Select an operation number: &quot;);</span>
+<span class="fc" id="L141">        int choice = scanner.nextInt();</span>
+<span class="fc" id="L142">        scanner.nextLine(); // Consume newline</span>
+
+<span class="fc bfc" id="L144" title="All 7 branches covered.">        switch (choice) {</span>
+            case 1:
+<span class="fc" id="L146">                ProjectManager.addProject(scanner);</span>
+<span class="fc" id="L147">                reloadDishList(); // 重新加载菜单</span>
+<span class="fc" id="L148">                break;</span>
+            case 2:
+<span class="fc" id="L150">                ProjectManager.deleteProject(scanner);</span>
+<span class="fc" id="L151">                reloadDishList(); // 重新加载菜单</span>
+<span class="fc" id="L152">                break;</span>
+            case 3:
+<span class="fc" id="L154">                ProjectManager.modifyProject(scanner);</span>
+<span class="fc" id="L155">                reloadDishList(); // 重新加载菜单</span>
+<span class="fc" id="L156">                break;</span>
+            case 4:
+<span class="fc" id="L158">                System.out</span>
+<span class="fc" id="L159">                        .print(&quot;Enter new administrator username (must start with a letter and not contain spaces): &quot;);</span>
+<span class="fc" id="L160">                String newAdminUsername = scanner.nextLine();</span>
+<span class="fc" id="L161">                System.out</span>
+<span class="fc" id="L162">                        .print(&quot;Enter new administrator password (at least 8 characters and cannot contain spaces): &quot;);</span>
+<span class="fc" id="L163">                String newAdminPassword = scanner.nextLine();</span>
+<span class="fc" id="L164">                UserManager.register(newAdminUsername, newAdminPassword); // Register a new administrator user</span>
+<span class="fc" id="L165">                break;</span>
+            case 5:
+<span class="fc" id="L167">                int totalOrders = countHistoricalOrders();</span>
+<span class="fc" id="L168">                System.out.println(&quot;Total number of historical orders: &quot; + totalOrders);</span>
+<span class="fc" id="L169">                break;</span>
+            case 6:
+<span class="fc" id="L171">                System.out.println(&quot;Exiting Admin Panel.&quot;);</span>
+<span class="fc" id="L172">                break;</span>
+            default:
+<span class="fc" id="L174">                System.out.println(&quot;Invalid choice. Please try again.&quot;);</span>
+                break;
+        }
+<span class="fc" id="L177">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

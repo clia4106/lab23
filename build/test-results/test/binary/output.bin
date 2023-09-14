@@ -1,0 +1,336 @@
+You ordered: 
+
+--- Options ---
+'1. Return to menu to order more dishes
+2. Remove a dish
+3. Back to main
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+You ordered: 
+
+--- Options ---
+'1. Return to menu to order more dishes
+2. Remove a dish
+3. Back to main
+2Enter the number of the dish you want to remove: 
+Invalid dish number!
+You ordered: 
+
+--- Options ---
+'1. Return to menu to order more dishes
+2. Remove a dish
+3. Back to main
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+You added chip
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+You ordered: 
+1. chip x1 Total: $5.0
+
+--- Options ---
+'1. Return to menu to order more dishes
+2. Remove a dish
+3. Back to main
+2Enter the number of the dish you want to remove: 
+Removed chip from your order.
+You ordered: 
+
+--- Options ---
+'1. Return to menu to order more dishes
+2. Remove a dish
+3. Back to main
+JEnter order number to view details or press 0 to go back to the main menu
+Details for order number 1:
+Order Number: 1
+Delivery Method: Delivery
+3The price for this meal is: $1000.0, details are :
+
+1. xbox one x1 Total: $1000.0
+JEnter order number to view details or press 0 to go back to the main menu
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+You added chip
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+(Choose your preferred delivery method: 
+1. Delivery
+
+2. Pickup
+Order Number: 10
+Delivery Method: Delivery
+0The price for this meal is: $5.0, details are :
+1. chip x1 Total: $5.0
+
+--- Options ---
+1. Pay the order
+2. Back to main
+(Choose your preferred delivery method: 
+1. Delivery
+
+2. Pickup
+Order Number: 10
+Delivery Method: Pickup
+0The price for this meal is: $5.0, details are :
+1. chip x1 Total: $5.0
+
+--- Options ---
+1. Pay the order
+2. Back to main
+<Your order has been paid successfully with order number: 11
+Order History:
+V1. Order number: 11. Paid time: 2023-09-13 04:37:13, total money:$5.0, total count: 1
+JEnter order number to view details or press 0 to go back to the main menu
+Details for order number 11:
+chip x1 Total: $5.0
+Order History:
+V1. Order number: 11. Paid time: 2023-09-13 04:37:13, total money:$5.0, total count: 1
+JEnter order number to view details or press 0 to go back to the main menu
+Main Menu:
+1. Display Menu
+2. View Orders
+3. Process Payment
+4. View Order History
+5. Exit
+6. Admin Login
+
+7Select an operation: Invalid choice. Please try again.
+Main Menu:
+1. Display Menu
+2. View Orders
+3. Process Payment
+4. View Order History
+5. Exit
+6. Admin Login
+
+RSelect an operation: Please log in as an administrator to access admin functions.
+Main Menu:
+1. Display Menu
+2. View Orders
+3. Process Payment
+4. View Order History
+5. Exit
+6. Admin Login
+
+Select an operation: 	test x 2
+1
+false
+jEnter administrator username: Enter administrator password: Administrator login failed. Please try again.
+Main Menu:
+1. Display Menu
+2. View Orders
+3. Process Payment
+4. View Order History
+5. Exit
+6. Admin Login
+
+qSelect an operation: Enter administrator username: Enter administrator password: Administrator login successful!
+Main Menu:
+1. Display Menu
+2. View Orders
+3. Process Payment
+4. View Order History
+5. Exit
+6. Exit Admin Mode
+7. Admin Control Panel
+Select an operation: 	1:chip
+	2:pizza
+		3:Burger
+	4:coke
+	5:water
+	6:xbox one
+	.---------------add---------------------------
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	ŽSelect an operation number: Enter product ID: Enter product name: Enter product description: Enter product price: The project has been added.
+	Menu reloaded.
+	1:chip
+	2:pizza
+		3:Burger
+	4:coke
+	5:water
+	6:xbox one
+		888:test
+	1---------------modify---------------------------
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	ÕSelect an operation number: Enter the product ID to modify: Enter the new project name (test): Enter the new project description (test add Item): Enter the new project price (10.0): The project has been modified.
+	Menu reloaded.
+	1:chip
+	2:pizza
+		3:Burger
+	4:coke
+	5:water
+	6:xbox one
+	888:modify
+	1---------------delete---------------------------
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	ZSelect an operation number: Enter the product ID to delete: The project has been deleted.
+	Menu reloaded.
+	1:chip
+	2:pizza
+		3:Burger
+	4:coke
+	5:water
+	6:xbox one
+	3---------------register---------------------------
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	çSelect an operation number: Enter new administrator username (must start with a letter and not contain spaces): Enter new administrator password (at least 8 characters and cannot contain spaces): Username must start with a letter.
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	ñSelect an operation number: Enter new administrator username (must start with a letter and not contain spaces): Enter new administrator password (at least 8 characters and cannot contain spaces): Password must contain at least 8 characters.
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	çSelect an operation number: Enter new administrator username (must start with a letter and not contain spaces): Enter new administrator password (at least 8 characters and cannot contain spaces): Username must start with a letter.
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	ÝSelect an operation number: Enter new administrator username (must start with a letter and not contain spaces): Enter new administrator password (at least 8 characters and cannot contain spaces): Registration successful!
+	\Enter administrator username: Enter administrator password: Administrator login successful!
+	;---------------order statistics---------------------------
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	ASelect an operation number: Total number of historical orders: 7
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	>Select an operation number: Invalid choice. Please try again.
+	Admin Control Panel:
+	1. Add Item
+	2. Delete Item
+	3. Modify Item
+	"4. Register Administrator Account
+	%5. Account the total number of order
+	6. Return to Main Menu
+	1Select an operation number: Exiting Admin Panel.
+
+11
+1:chip
+2:pizza
+	3:Burger
+4:coke
+5:water
+6:xbox one
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+You added chip
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+chip
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+"Invalid choice. Please try again.
+Please order:
+'1. chip - Crispy fried potatoes - $5.0
+D2. pizza - Crisp golden crust covered with fresh ingredients - $7.0
+`3. Burger - Juicy beef patties and fresh vegetables sandwiched between the fluffy bread - $10.0
+)4. coke - A cold carbonated drink - $3.0
+#5. water - Clear pure water - $1.5
+(6. xbox one - gaming consoles - $1000.0
+ Press 0 to return to main menu.
+Order Number: 1
+Delivery Method: Delivery
+3The price for this meal is: $1000.0, details are :
+
+1. xbox one x1 Total: $1000.0
